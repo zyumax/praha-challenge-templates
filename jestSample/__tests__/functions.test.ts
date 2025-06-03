@@ -66,11 +66,3 @@ test('エラーメッセージを返す', async () => {
   nameApiService.getFirstName.mockResolvedValue('test');
   await expect(getFirstNameThrowIfLong(maxNameLength, nameApiService)).rejects.toThrow("first_name too long");
 });
-
-// テストエラーのやつ。参考になる
-// test('getFirstNameThrowIfLong自分で書いたNG', async () => {
-//   const maxNameLength = 3;
-//   nameApiService.getFirstName.mockResolvedValue('test');
-//   const result = await getFirstNameThrowIfLong(maxNameLength, nameApiService);
-//   expect(result).rejects.toThrow("first_name too long");
-// });

@@ -16,9 +16,6 @@ test('4文字の名前を取得して返す', async () => {
 
 test('指定文字以上の名前でエラーを返す', async () => {
     firstNameMock.get.mockResolvedValue('testtest');
-    // 下記エラー出る書き方
-    // await expect(new NameApiService(firstNameMock)).rejects.toThrow("first_name too long");
-
     const service = new NameApiService(firstNameMock);
 
     await expect(service.getFirstName()).rejects.toThrow("firstName is too long!");
