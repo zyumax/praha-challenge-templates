@@ -12,13 +12,17 @@ test('4文字の名前を取得して返す', async () => {
 
     const result = await service.getFirstName();
     expect(result).toBe('test');
+
+    expect(firstNameMock.get).toHaveBeenCalledTimes(1);
 });
 
 test('指定文字以上の名前でエラーを返す', async () => {
+    firstNameMock.get.mockClear();
     firstNameMock.get.mockResolvedValue('testtest');
     const service = new NameApiService(firstNameMock);
 
     await expect(service.getFirstName()).rejects.toThrow("firstName is too long!");
+    expect(firstNameMock.get).toHaveBeenCalledTimes(1);
 });
 
 // apiの呼び出しテストをする

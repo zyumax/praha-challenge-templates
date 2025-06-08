@@ -38,6 +38,8 @@ const databaseMock = {
 test('保存成功時', async () => {
   const result = await asyncSumOfArraySometimesZero([1, 1], databaseMock);
   expect(result).toBe(2);
+
+  expect(databaseMock.save).toHaveBeenCalledWith([1, 1]);
 });
 
 test('保存失敗時0を返す', async () => {
@@ -46,6 +48,7 @@ test('保存失敗時0を返す', async () => {
   })
   const result = await asyncSumOfArraySometimesZero([1, 1], databaseMock);
   expect(result).toBe(0);
+  expect(databaseMock.save).toHaveBeenCalledWith([1, 1]);
 });
 
 // 課題2-2-2
@@ -59,10 +62,17 @@ test('ファーストネームを返す', async () => {
   nameApiService.getFirstName.mockResolvedValue('test');
   const result = await getFirstNameThrowIfLong(maxNameLength, nameApiService);
   expect(result).toBe('test');
+
+  expect(nameApiService.getFirstName).toHaveBeenCalledWith();
+  expect(nameApiService.getFirstName).toHaveBeenCalledTimes(1);
 });
 
 test('エラーメッセージを返す', async () => {
+  nameApiService.getFirstName.mockClear(); //一度呼び出されたので、呼び出した履歴を削除
   const maxNameLength = 3;
   nameApiService.getFirstName.mockResolvedValue('test');
   await expect(getFirstNameThrowIfLong(maxNameLength, nameApiService)).rejects.toThrow("first_name too long");
+
+  expect(nameApiService.getFirstName).toHaveBeenCalledWith();
+  expect(nameApiService.getFirstName).toHaveBeenCalledTimes(1);
 });

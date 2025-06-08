@@ -26,7 +26,7 @@ export const asyncSumOfArraySometimesZero = (
 
 
 interface INameApiService {
-  getFirstName: () => Promise<string>;
+  getFirstName: () => string;
 }
 
 export const getFirstNameThrowIfLong = async (
