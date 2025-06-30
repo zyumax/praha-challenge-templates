@@ -6,8 +6,9 @@ test('配列の中身を足して2にする', () => {
   expect(sumOfArray([1, 1])).toBe(2);
 });
 
-test("空配列の場合は例外を投げる", () => {
-  expect(() => sumOfArray([])).toThrow(TypeError);
+test("空配列の場合は初期値の0を出力する", () => {
+  // expect(() => sumOfArray([])).toThrow(TypeError);
+  expect(sumOfArray([])).toBe(0);
 });
 
 // test('文字列のテスト', () => {
@@ -20,8 +21,9 @@ test('配列の中身を足して2にする',async () => {
   await expect(asyncSumOfArray([1, 1])).resolves.toBe(2);
 });
 
-test('空配列の場合は例外を投げる', () => {
-  return expect(() => asyncSumOfArray([])).rejects.toThrow(TypeError);
+test('空配列の場合は初期値の0を出力する', () => {
+  // return expect(() => asyncSumOfArray([])).rejects.toThrow(TypeError);
+  return expect(asyncSumOfArray([])).resolves.toBe(0);
 });
 
 // test('文字列のテスト', () => {
