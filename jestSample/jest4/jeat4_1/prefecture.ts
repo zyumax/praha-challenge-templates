@@ -37,7 +37,8 @@ async function getRegionMessage(postalCode: string): Promise<string> {
   const prefecture = await getPrefecture(postalCode);
   const region = getRegionGroup(prefecture);
   
-  return (`${prefecture} は ${region} です`);
+  return `${prefecture} は ${region} です`;
 }
 
+// 使用例
 getRegionMessage("1000001");
