@@ -10,7 +10,7 @@ type ZipCloudResponse = {
 };
 
 // APIで都道府県を取得する
-async function getPrefecture(postalCode: string): Promise<string> {
+export async function getPrefecture(postalCode: string): Promise<string> {
   const url = `https://zipcloud.ibsnet.co.jp/api/search?zipcode=${postalCode}`;
   const response = await axios.get<ZipCloudResponse>(url);
   if (response.data.status !== 200 || !response.data.results?.[0]) {
@@ -21,7 +21,7 @@ async function getPrefecture(postalCode: string): Promise<string> {
 }
 
 // 都道府県から地方を取得する
-function getRegionGroup(prefecture: string): RegionGroup {
+export function getRegionGroup(prefecture: string): RegionGroup {
   const foundRegion = (Object.entries(REGION_GROUPS) as [RegionGroup, readonly string[]][])
     .find(([region, prefectures]) => prefectures.includes(prefecture));
 
@@ -33,7 +33,7 @@ function getRegionGroup(prefecture: string): RegionGroup {
 }
 
 // 地方情報のメッセージを返す
-async function getRegionMessage(postalCode: string): Promise<string> {
+export async function getRegionMessage(postalCode: string): Promise<string> {
   const prefecture = await getPrefecture(postalCode);
   const region = getRegionGroup(prefecture);
   
