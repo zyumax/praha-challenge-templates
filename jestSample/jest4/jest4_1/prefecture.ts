@@ -41,4 +41,4 @@ export async function getRegionMessage(postalCode: string): Promise<string> {
 }
 
 // 使用例
-getRegionMessage("1000001");
+// getRegionMessage("1000001");
